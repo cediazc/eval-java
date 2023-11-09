@@ -25,23 +25,23 @@ public class UserController {
         return ResponseEntity.ok(userDomain);
     }
 
-    @GetMapping("/uuid")
-    public ResponseEntity<UserDomain> getUserByUUID(@RequestParam String uuid) {
+    @GetMapping("/{uuid}")
+    public ResponseEntity<UserDomain> getUserByUUID(@PathVariable String uuid) {
         return ResponseEntity.ok(userService.getByUUID(uuid));
     }
 
-    @GetMapping("/email")
+    @GetMapping("/")
     public ResponseEntity<UserDomain> getUserByMail(@RequestParam String email) {
         return ResponseEntity.ok(userService.getByEmail(email));
     }
 
-    @DeleteMapping("/uuid")
-    public void deleteUserByUUID(@RequestParam String uuid) {
+    @DeleteMapping("/{uuid}")
+    public void deleteUserByUUID(@PathVariable String uuid) {
         userService.deleteByUUID(uuid);
     }
 
-    @PutMapping("/uuid")
-    public ResponseEntity<UserDomain> updateUser(@RequestParam String uuid,
+    @PutMapping("/{uuid}")
+    public ResponseEntity<UserDomain> updateUser(@PathVariable String uuid,
                                                  @Valid @NotNull(message = "Debe ingresar el body de la request")
                                                  @RequestBody UserDomain userDomain) throws RuntimeException {
 

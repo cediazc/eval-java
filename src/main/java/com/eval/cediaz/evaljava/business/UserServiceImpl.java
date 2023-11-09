@@ -89,6 +89,11 @@ public class UserServiceImpl implements UserService {
 
         try {
             User userEntity = userRepository.findById(userDomain.getId());
+
+            if(userEntity == null){
+                throw new UserNotFoundException("Email no existe en la BD");
+            }
+
             userEntity = userMapperService.createUserEntityFromDomain(userDomain);
 
             // Se guarda el User
