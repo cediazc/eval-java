@@ -1,0 +1,12 @@
+{
+  "name" : "Juan Rodriguez" ,
+  "email" : "mail.valid@test.com" ,
+  "password" : "$2a$10$KZ7gt2ptaK3HarEghFYKO.GYIQXQm0FoTeefg2i5jos.50ny/iSqu." ,
+  "phones" : [
+    {
+      "number" : "1234567" ,
+      "cityCode" : "1" ,
+      "countryCode" : "57"
+    }
+  ]
+}

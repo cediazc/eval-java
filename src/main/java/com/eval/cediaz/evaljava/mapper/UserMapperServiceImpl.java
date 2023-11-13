@@ -7,6 +7,7 @@ import com.eval.cediaz.evaljava.entity.User;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -49,12 +50,14 @@ public class UserMapperServiceImpl implements UserMapperService {
 
     private User getUserEntity(UserDomain userDomain) {
         User userEntity = new User();
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        String encryptPass = bCryptPasswordEncoder.encode(userDomain.getPassword());
+        userDomain.setPassword(encryptPass);
 
         userEntity.setId(userDomain.getId());
         userEntity.setName(userDomain.getName());
         userEntity.setEmail(userDomain.getEmail());
-        //TODO: Encriptar la pass, y siempre tener el manejo y comparación encriptada
-        userEntity.setPassword(userDomain.getPassword());
+        userEntity.setPassword(encryptPass);
         userEntity.setCreated(userDomain.getCreated());
         userEntity.setLastModified(userDomain.getLastModified());
         userEntity.setLastLogin(userDomain.getLastLogin());
